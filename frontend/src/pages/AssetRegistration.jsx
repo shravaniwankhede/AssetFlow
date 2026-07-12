@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useAssetFlow } from '../../contexts/AssetFlowContext';
-import DataTable from '../../components/layout/DataTable';
-import SearchBar from '../../components/layout/SearchBar';
-import Modal from '../../components/layout/Modal';
-import StatusBadge from '../../components/layout/StatusBadge';
+import { useAssetFlow } from '../contexts/AssetFlowContext';
+import DataTable from '../components/layout/DataTable';
+import SearchBar from '../components/layout/SearchBar';
+import Modal from '../components/layout/Modal';
+import StatusBadge from '../components/layout/StatusBadge';
 import toast from 'react-hot-toast';
 import { PlusCircle, QrCode, FileText, Calendar, User, Eye } from 'lucide-react';
 import './AssetRegistration.css';
@@ -35,7 +35,7 @@ const AssetRegistration = () => {
     setSelectedFilters(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleRegisterSubmit = (e) => {
+  const handleRegisterSubmit = async (e) => {
     e.preventDefault();
     if (!newName) {
       toast.error('Asset Name is required');
@@ -52,8 +52,8 @@ const AssetRegistration = () => {
       documents: ['manual.pdf']
     };
 
-    const newId = registerAsset(assetData);
-    toast.success(Asset ${newId} registered successfully!);
+    const newId = await registerAsset(assetData);
+    toast.success(`Asset ${newId} registered successfully!`);
     setIsRegisterModalOpen(false);
     
     // Reset Form
@@ -172,7 +172,7 @@ const AssetRegistration = () => {
       <Modal 
         isOpen={!!selectedAsset} 
         onClose={() => setSelectedAsset(null)} 
-        title={Asset Details: ${selectedAsset?.id}}
+        title={`Asset Details: ${selectedAsset?.id}`}
         size="lg"
       >
         {selectedAsset && (
@@ -207,7 +207,7 @@ const AssetRegistration = () => {
                 <div className="documents-list">
                   {selectedAsset.documents && selectedAsset.documents.length > 0 ? (
                     selectedAsset.documents.map((doc, idx) => (
-                      <a href="#" key={idx} className="doc-link" onClick={(e) => { e.preventDefault(); toast.success(Downloading ${doc}); }}>
+                      <a href="#" key={idx} className="doc-link" onClick={(e) => { e.preventDefault(); toast.success(`Downloading ${doc}`); }}>
                         <FileText size={16} />
                         <span>{doc}</span>
                       </a>
