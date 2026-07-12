@@ -149,7 +149,7 @@ h2, .page-subheading-title {
 .card {
   background: var(--card);
   border: 1px solid var(--border);
-  border-top: 3px solid var(--primary);
+  border-top: 2px solid var(--primary);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-card);
   padding: var(--space-3);
@@ -157,9 +157,9 @@ h2, .page-subheading-title {
 }
 
 .card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(114, 75, 104, 0.08);
-  border-color: #d2cad5;
+  transform: translateY(-2.5px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-focus);
 }
 
 .btn {
@@ -193,13 +193,14 @@ h2, .page-subheading-title {
 
 .btn-secondary {
   background-color: #ffffff;
-  color: var(--primary);
-  border-color: var(--primary);
+  color: var(--text-primary);
+  border-color: var(--border);
 }
 
 .btn-secondary:hover:not(:disabled) {
-  background-color: var(--primary-light);
-  color: var(--primary-hover);
+  background-color: var(--hover);
+  border-color: var(--text-light);
+  color: var(--primary);
 }
 
 .btn-danger {
