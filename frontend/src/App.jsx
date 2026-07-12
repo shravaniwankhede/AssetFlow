@@ -1,122 +1,143 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import React, { useState } from 'react';
+import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom';
+import { AssetFlowProvider, useAssetFlow } from './contexts/AssetFlowContext';
+import { Toaster } from 'react-hot-toast';
 
-function App() {
-  const [count, setCount] = useState(0)
+// Layout components
+import Sidebar from './components/layout/Sidebar';
+import Navbar from './components/layout/Navbar';
+
+// Pages
+import Login from './pages/Login/Login';
+import Dashboard from './pages/Dashboard/Dashboard';
+import OrganizationSetup from './pages/OrganizationSetup/OrganizationSetup';
+import AssetRegistration from './pages/AssetRegistration/AssetRegistration';
+import AssetAllocation from './pages/AssetAllocation/AssetAllocation';
+import ResourceBooking from './pages/ResourceBooking/ResourceBooking';
+import Maintenance from './pages/Maintenance/Maintenance';
+import Audit from './pages/Audit/Audit';
+import Reports from './pages/Reports/Reports';
+import Notifications from './pages/Notifications/Notifications';
+
+// CSS Layout
+import './App.css';
+
+// Protected Route Guard Component
+const ProtectedRoute = ({ allowedRoles }) => {
+  const { currentUser } = useAssetFlow();
+
+  if (!currentUser) {
+    // Redirect to Login if not authenticated
+    return <Navigate to="/login" replace />;
+  }
+
+  // Check if role is authorized for this route
+  if (allowedRoles && !allowedRoles.includes(currentUser.role)) {
+    return <Navigate to="/dashboard" replace />;
+  }
+
+  return <Outlet />;
+};
+
+// Main Layout Wrapper
+const AppLayout = () => {
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(false);
+
+  const toggleMobileSidebar = () => {
+    setIsMobileSidebarOpen(!isMobileSidebarOpen);
+  };
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <div className="app-layout-container">
+      <Sidebar 
+        isMobileOpen={isMobileSidebarOpen} 
+        toggleMobileSidebar={toggleMobileSidebar} 
+        isCollapsed={isCollapsed}
+        setIsCollapsed={setIsCollapsed}
+      />
+      <div className={`app-content-wrapper ${isCollapsed ? 'sidebar-collapsed' : ''}`}>
+        <Navbar toggleMobileSidebar={toggleMobileSidebar} />
+        <main className="app-main-content">
+          <Outlet />
+        </main>
+      </div>
+    </div>
+  );
+};
 
-      <div className="ticks"></div>
+function App() {
+  return (
+    <AssetFlowProvider>
+      <BrowserRouter>
+        {/* React Hot Toast notification container */}
+        <Toaster 
+          position="top-right" 
+          toastOptions={{
+            duration: 4000,
+            style: {
+              background: '#FFFFFF',
+              color: '#111827',
+              border: '1px solid #E2E8F0',
+              borderRadius: '8px',
+              fontFamily: 'Inter, sans-serif',
+              fontSize: '14px',
+              boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)',
+            },
+            success: {
+              iconTheme: {
+                primary: '#22C55E',
+                secondary: '#FFFFFF',
+              },
+            },
+            error: {
+              iconTheme: {
+                primary: '#EF4444',
+                secondary: '#FFFFFF',
+              },
+            },
+          }}
+        />
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/login" element={<Login />} />
+          
+          {/* Root redirect */}
+          <Route path="/" element={<Navigate to="/dashboard" replace />} />
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+          {/* Protected Routes inside AppLayout */}
+          <Route element={<ProtectedRoute />}>
+            <Route element={<AppLayout />}>
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/assets" element={<AssetRegistration />} />
+              <Route path="/allocation" element={<AssetAllocation />} />
+              <Route path="/resources" element={<ResourceBooking />} />
+              <Route path="/maintenance" element={<Maintenance />} />
+              <Route path="/notifications" element={<Notifications />} />
+            </Route>
+          </Route>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+          {/* Role-restricted Routes: Admin and Department Head */}
+          <Route element={<ProtectedRoute allowedRoles={['Admin', 'Department Head']} />}>
+            <Route element={<AppLayout />}>
+              <Route path="/organization" element={<OrganizationSetup />} />
+            </Route>
+          </Route>
+
+          {/* Role-restricted Routes: Admin, Asset Manager, and Department Head */}
+          <Route element={<ProtectedRoute allowedRoles={['Admin', 'Asset Manager', 'Department Head']} />}>
+            <Route element={<AppLayout />}>
+              <Route path="/audit" element={<Audit />} />
+              <Route path="/reports" element={<Reports />} />
+            </Route>
+          </Route>
+
+          {/* Fallback route */}
+          <Route path="*" element={<Navigate to="/dashboard" replace />} />
+        </Routes>
+      </BrowserRouter>
+    </AssetFlowProvider>
+  );
 }
 
-export default App
+export default App;
