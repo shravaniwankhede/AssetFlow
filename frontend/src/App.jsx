@@ -20,6 +20,10 @@ import Audit from './pages/Audit/Audit';
 import Reports from './pages/Reports/Reports';
 import Notifications from './pages/Notifications/Notifications';
 
+// Chatbot Copilot
+import { ChatProvider } from './contexts/ChatContext';
+import Chatbot from './components/Chatbot/Chatbot';
+
 // CSS Layout
 import './App.css';
 
@@ -82,6 +86,7 @@ const AppLayout = () => {
           <AnimatedRoutes />
         </main>
       </div>
+      <Chatbot />
     </div>
   );
 };
@@ -90,71 +95,73 @@ function App() {
   return (
     <AssetFlowProvider>
       <BrowserRouter>
-        {/* React Hot Toast notification container */}
-        <Toaster 
-          position="top-right" 
-          toastOptions={{
-            duration: 4000,
-            style: {
-              background: '#FFFFFF',
-              color: '#111827',
-              border: '1px solid #E2E8F0',
-              borderRadius: '8px',
-              fontFamily: 'Inter, sans-serif',
-              fontSize: '14px',
-              boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)',
-            },
-            success: {
-              iconTheme: {
-                primary: '#22C55E',
-                secondary: '#FFFFFF',
+        <ChatProvider>
+          {/* React Hot Toast notification container */}
+          <Toaster 
+            position="top-right" 
+            toastOptions={{
+              duration: 4000,
+              style: {
+                background: '#FFFFFF',
+                color: '#111827',
+                border: '1px solid #E2E8F0',
+                borderRadius: '8px',
+                fontFamily: 'Inter, sans-serif',
+                fontSize: '14px',
+                boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)',
               },
-            },
-            error: {
-              iconTheme: {
-                primary: '#EF4444',
-                secondary: '#FFFFFF',
+              success: {
+                iconTheme: {
+                  primary: '#22C55E',
+                  secondary: '#FFFFFF',
+                },
               },
-            },
-          }}
-        />
-        <Routes>
-          {/* Public Routes */}
-          <Route path="/login" element={<Login />} />
-          
-          {/* Root redirect */}
-          <Route path="/" element={<Navigate to="/dashboard" replace />} />
+              error: {
+                iconTheme: {
+                  primary: '#EF4444',
+                  secondary: '#FFFFFF',
+                },
+              },
+            }}
+          />
+          <Routes>
+            {/* Public Routes */}
+            <Route path="/login" element={<Login />} />
+            
+            {/* Root redirect */}
+            <Route path="/" element={<Navigate to="/dashboard" replace />} />
 
-          {/* Protected Routes inside AppLayout */}
-          <Route element={<ProtectedRoute />}>
-            <Route element={<AppLayout />}>
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/assets" element={<AssetRegistration />} />
-              <Route path="/allocation" element={<AssetAllocation />} />
-              <Route path="/resources" element={<ResourceBooking />} />
-              <Route path="/maintenance" element={<Maintenance />} />
-              <Route path="/notifications" element={<Notifications />} />
+            {/* Protected Routes inside AppLayout */}
+            <Route element={<ProtectedRoute />}>
+              <Route element={<AppLayout />}>
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/assets" element={<AssetRegistration />} />
+                <Route path="/allocation" element={<AssetAllocation />} />
+                <Route path="/resources" element={<ResourceBooking />} />
+                <Route path="/maintenance" element={<Maintenance />} />
+                <Route path="/notifications" element={<Notifications />} />
+              </Route>
             </Route>
-          </Route>
 
-          {/* Role-restricted Routes: Admin, Asset Manager, Department Head, and Employee */}
-          <Route element={<ProtectedRoute allowedRoles={['Admin', 'Asset Manager', 'Department Head', 'Employee']} />}>
-            <Route element={<AppLayout />}>
-              <Route path="/organization" element={<OrganizationSetup />} />
+            {/* Role-restricted Routes: Admin, Asset Manager, Department Head, and Employee */}
+            <Route element={<ProtectedRoute allowedRoles={['Admin', 'Asset Manager', 'Department Head', 'Employee']} />}>
+              <Route element={<AppLayout />}>
+                <Route path="/organization" element={<OrganizationSetup />} />
+              </Route>
             </Route>
-          </Route>
 
-          {/* Role-restricted Routes: Admin, Asset Manager, Department Head, and Employee */}
-          <Route element={<ProtectedRoute allowedRoles={['Admin', 'Asset Manager', 'Department Head', 'Employee']} />}>
-            <Route element={<AppLayout />}>
-              <Route path="/audit" element={<Audit />} />
-              <Route path="/reports" element={<Reports />} />
+            {/* Role-restricted Routes: Admin, Asset Manager, Department Head, and Employee */}
+            <Route element={<ProtectedRoute allowedRoles={['Admin', 'Asset Manager', 'Department Head', 'Employee']} />}>
+              <Route element={<AppLayout />}>
+                <Route path="/audit" element={<Audit />} />
+                <Route path="/reports" element={<Reports />} />
+              </Route>
             </Route>
-          </Route>
 
-          {/* Fallback route */}
-          <Route path="*" element={<Navigate to="/dashboard" replace />} />
-        </Routes>
+            {/* Fallback route */}
+            <Route path="*" element={<Navigate to="/dashboard" replace />} />
+          </Routes>
+        </ChatProvider>
       </BrowserRouter>
     </AssetFlowProvider>
   );

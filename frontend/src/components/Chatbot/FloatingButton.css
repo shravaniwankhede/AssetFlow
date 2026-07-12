@@ -1,0 +1,50 @@
+.floating-ai-launcher {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  height: 52px;
+  background: linear-gradient(135deg, var(--primary, #724B68) 0%, var(--primary-dark, #30183C) 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 26px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(48, 24, 60, 0.25), 0 2px 8px rgba(114, 75, 104, 0.2);
+  z-index: 1000;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+
+.floating-ai-launcher:hover {
+  box-shadow: 0 12px 28px rgba(48, 24, 60, 0.35), 0 4px 12px rgba(114, 75, 104, 0.25);
+}
+
+.launcher-content-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.launcher-icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sparkle-glow-icon {
+  color: #fff;
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.8));
+}
+
+.launcher-text-label {
+  overflow: hidden;
+  display: inline-block;
+}
