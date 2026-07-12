@@ -40,6 +40,10 @@
   text-align: left;
 }
 
+.asset-details-grid.no-sidebar {
+  grid-template-columns: 1fr;
+}
+
 .details-main-panel {
   display: flex;
   flex-direction: column;

@@ -176,7 +176,7 @@ const AssetRegistration = () => {
         size="lg"
       >
         {selectedAsset && (
-          <div className="asset-details-grid">
+          <div className="asset-details-grid no-sidebar">
             <div className="details-main-panel">
               <div className="details-header">
                 <h3>{selectedAsset.name}</h3>
@@ -242,18 +242,6 @@ const AssetRegistration = () => {
                     </div>
                   ))}
                 </div>
-              </div>
-            </div>
-
-            {/* Sidebar with QR code */}
-            <div className="details-side-panel">
-              <h4 className="section-title">Asset QR Code</h4>
-              <div className="qr-code-card">
-                <div className="qr-placeholder">
-                  <QrCode size={120} strokeWidth={1.5} />
-                </div>
-                <span className="qr-serial">{selectedAsset.qrCode || selectedAsset.id}</span>
-                <p className="qr-tip">Scan tag in field to instantly retrieve lifecycle history details.</p>
               </div>
             </div>
           </div>
