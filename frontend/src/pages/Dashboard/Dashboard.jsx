@@ -126,13 +126,13 @@ const Dashboard = () => {
                   
                   {/* Bars (Engineering, HR, Finance, Operations) */}
                   {/* Eng: 85% */}
-                  <rect x="55" y="30" width="24" height="90" fill="#2563EB" rx="3" />
+                  <rect x="55" y="30" width="24" height="90" fill="#30183c" rx="3" />
                   {/* HR: 45% */}
-                  <rect x="115" y="70" width="24" height="50" fill="#3B82F6" rx="3" />
+                  <rect x="115" y="70" width="24" height="50" fill="#4a255d" rx="3" />
                   {/* Finance: 60% */}
-                  <rect x="175" y="55" width="24" height="65" fill="#60A5FA" rx="3" />
+                  <rect x="175" y="55" width="24" height="65" fill="#724b68" rx="3" />
                   {/* Operations: 75% */}
-                  <rect x="235" y="42" width="24" height="78" fill="#93C5FD" rx="3" />
+                  <rect x="235" y="42" width="24" height="78" fill="#96748e" rx="3" />
 
                   {/* Axis Labels */}
                   <text x="67" y="135" fontSize="9" textAnchor="middle" fill="#64748B">ENG</text>
@@ -152,12 +152,12 @@ const Dashboard = () => {
                   <path 
                     d="M 30,120 L 70,100 L 110,110 L 150,60 L 190,75 L 230,30 L 270,45" 
                     fill="none" 
-                    stroke="#3B82F6" 
+                    stroke="#724b68" 
                     strokeWidth="3" 
                   />
-                  <circle cx="70" cy="100" r="4" fill="#3B82F6" />
-                  <circle cx="150" cy="60" r="4" fill="#3B82F6" />
-                  <circle cx="230" cy="30" r="4" fill="#3B82F6" />
+                  <circle cx="70" cy="100" r="4" fill="#724b68" />
+                  <circle cx="150" cy="60" r="4" fill="#724b68" />
+                  <circle cx="230" cy="30" r="4" fill="#724b68" />
                   {/* Labels */}
                   <text x="30" y="135" fontSize="9" textAnchor="middle" fill="#64748B">Jan</text>
                   <text x="110" y="135" fontSize="9" textAnchor="middle" fill="#64748B">Mar</text>

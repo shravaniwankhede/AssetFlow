@@ -1,0 +1,169 @@
+.reports-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3) 0;
+  width: 100%;
+}
+
+.reports-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  text-align: left;
+  margin-bottom: var(--space-2);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.insights-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--text-light);
+  text-transform: uppercase;
+  margin-bottom: 2px;
+  display: block;
+}
+
+.export-actions-row {
+  display: flex;
+  gap: 10px;
+}
+
+.csv-btn {
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  background-color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.csv-btn:hover {
+  background-color: var(--hover);
+  border-color: var(--text-light);
+}
+
+/* Reports Grid Layout (2x2) */
+.reports-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+  width: 100%;
+}
+
+.report-card {
+  padding: var(--space-3);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.report-card-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  color: var(--text-light);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.report-card-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-3);
+}
+
+.svg-chart-container {
+  width: 100%;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reports-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Department Allocation List */
+.dept-allocation-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 8px;
+  padding: var(--space-1) 0;
+}
+
+.dept-allocation-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.dept-name {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text-primary);
+  width: 110px;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dept-progress-container {
+  flex: 1;
+  height: 8px;
+  background-color: var(--hover);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.dept-progress-bar {
+  height: 100%;
+  background-color: var(--border-focus); /* Warm Mauve */
+  border-radius: var(--radius-full);
+  transition: width var(--transition-normal);
+}
+
+.dept-count {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text-primary);
+  width: 24px;
+  text-align: right;
+}
+
+/* Booking Heatmap Grid */
+.heatmap-container {
+  width: 100%;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heatmap-cell {
+  transition: filter var(--transition-fast);
+  cursor: pointer;
+}
+
+.heatmap-cell:hover {
+  filter: brightness(0.9);
+}
+
+@media (max-width: 900px) {
+  .reports-grid {
+    grid-template-columns: 1fr;
+  }
+}
