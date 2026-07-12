@@ -38,32 +38,49 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 8px;
   border-bottom: 2px solid var(--border);
+  padding-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .column-title {
-  font-size: 13px;
+  font-size: 13.5px;
   font-weight: 600;
   color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
-.column-count-badge {
-  background-color: #ffffff;
+.column-count {
+  font-size: 11.5px;
+  background-color: var(--border);
   color: var(--text-secondary);
-  font-size: 11px;
-  font-weight: 700;
   padding: 2px 6px;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  font-weight: 600;
 }
 
-/* Left borders variants */
-.border-pending { border-top: 4px solid var(--text-light); }
-.border-approved { border-top: 4px solid var(--primary); }
-.border-assigned { border-top: 4px solid var(--warning); }
-.border-progress { border-top: 4px solid #a855f7; }
-.border-resolved { border-top: 4px solid var(--success); }
+/* Kanban column variants */
+.kanban-column.pending .column-header {
+  border-bottom-color: var(--text-light);
+}
+
+.kanban-column.approved .column-header {
+  border-bottom-color: var(--info);
+}
+
+.kanban-column.assigned .column-header {
+  border-bottom-color: var(--warning);
+}
+
+.kanban-column.in-progress .column-header {
+  border-bottom-color: var(--primary);
+}
+
+.kanban-column.resolved .column-header {
+  border-bottom-color: var(--success);
+}
 
 .column-cards-container {
   display: flex;
@@ -73,98 +90,89 @@
   max-height: 480px;
 }
 
-.kanban-card {
+/* Ticket Cards */
+.maintenance-card {
   background-color: #ffffff;
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   padding: 12px;
   box-shadow: var(--shadow-sm);
-  text-align: left;
   display: flex;
   flex-direction: column;
   gap: 8px;
+  text-align: left;
   transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  cursor: grab;
 }
 
-.kanban-card:hover {
+.maintenance-card:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
 
-.resolved-card {
-  opacity: 0.85;
-  background-color: var(--success-light);
-}
-
-.card-header-row {
+.card-top-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.ticket-id {
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--text-secondary);
+.asset-id-tag {
+  font-family: monospace;
+  font-weight: 600;
+  font-size: 11.5px;
   background-color: var(--hover);
+  color: var(--primary);
   padding: 2px 6px;
   border-radius: var(--radius-sm);
 }
 
-.ticket-date {
-  font-size: 10px;
+.ticket-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.ticket-desc {
+  font-size: 11.5px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.card-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 10.5px;
   color: var(--text-light);
+  border-top: 1px dashed var(--border);
+  padding-top: 6px;
+  margin-top: 2px;
+}
+
+.meta-item {
   display: flex;
   align-items: center;
   gap: 4px;
 }
 
-.ticket-title-text {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text-primary);
-  line-height: 1.3;
-}
-
-.ticket-notes-desc {
-  font-size: 12px;
-  color: var(--text-secondary);
-  line-height: 1.4;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.ticket-tech-badge {
-  display: inline-flex;
+/* Move buttons for non-drag fallback */
+.card-actions-row {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
   gap: 6px;
-  font-size: 11px;
-  color: var(--warning-hover);
-  background-color: var(--warning-light);
-  padding: 4px 8px;
-  border-radius: var(--radius-sm);
-  width: fit-content;
-}
-
-/* Card Controls */
-.card-controls {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  margin-top: 4px;
   border-top: 1px solid var(--border);
   padding-top: 8px;
-  margin-top: 4px;
 }
 
 .btn-move {
   background: none;
   border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
   color: var(--text-secondary);
-  width: 22px;
-  height: 22px;
-  border-radius: var(--radius-full);
+  padding: 4px 6px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -176,18 +184,6 @@
   background-color: var(--hover);
   color: var(--text-primary);
   border-color: #cbd5e1;
-}
-
-.card-icon-status {
-  color: var(--text-light);
-}
-
-.resolved-icon {
-  color: var(--success);
-}
-
-.maint-icon {
-  color: var(--primary);
 }
 
 .empty-column-placeholder {
