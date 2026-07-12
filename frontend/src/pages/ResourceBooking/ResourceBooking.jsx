@@ -33,14 +33,14 @@ const ResourceBooking = () => {
     return `${daysShort[d.getDay()]}, ${d.getDate()} ${monthsShort[d.getMonth()]}`;
   };
 
-  const handleBookSlotSubmit = (e) => {
+  const handleBookSlotSubmit = async (e) => {
     e.preventDefault();
     if (!bookingTitle) {
       toast.error('Booking title is required');
       return;
     }
 
-    const res = createBooking(
+    const res = await createBooking(
       selectedResourceObj.name,
       bookingTitle,
       startTime,

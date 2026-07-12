@@ -38,13 +38,13 @@ const AssetAllocation = () => {
     }
   }, [selectedAssetId, assets]);
 
-  const handleDirectAllocate = (e) => {
+  const handleDirectAllocate = async (e) => {
     e.preventDefault();
     if (!assigneeName) {
       toast.error('Please select an employee to allocate');
       return;
     }
-    const res = allocateAsset(selectedAsset.id, assigneeName, allocationNotes);
+    const res = await allocateAsset(selectedAsset.id, assigneeName, allocationNotes);
     if (res.success) {
       toast.success(`Asset ${selectedAsset.id} successfully allocated to ${assigneeName}!`);
       // Reset
@@ -55,7 +55,7 @@ const AssetAllocation = () => {
     }
   };
 
-  const handleTransferRequest = (e) => {
+  const handleTransferRequest = async (e) => {
     e.preventDefault();
     if (!transferToEmployee) {
       toast.error('Please select an employee to transfer to');
@@ -66,7 +66,7 @@ const AssetAllocation = () => {
       return;
     }
 
-    const res = createTransferRequest(selectedAsset.id, transferToEmployee, transferReason);
+    const res = await createTransferRequest(selectedAsset.id, transferToEmployee, transferReason);
     if (res.success) {
       toast.success('Transfer request submitted successfully!');
       // Reset
@@ -77,8 +77,8 @@ const AssetAllocation = () => {
     }
   };
 
-  const handleApproveTransfer = (transferId) => {
-    const res = approveTransferRequest(transferId);
+  const handleApproveTransfer = async (transferId) => {
+    const res = await approveTransferRequest(transferId);
     if (res.success) {
       toast.success('Transfer request approved and asset reallocated!');
     } else {

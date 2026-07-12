@@ -37,7 +37,7 @@ const Maintenance = () => {
     { id: 'Resolved', label: 'Resolved & Closed', color: 'border-resolved' }
   ];
 
-  const handleReportSubmit = (e) => {
+  const handleReportSubmit = async (e) => {
     e.preventDefault();
     if (!selectedAssetId) {
       toast.error('Please select an asset');
@@ -48,17 +48,21 @@ const Maintenance = () => {
       return;
     }
 
-    reportMaintenance(selectedAssetId, issueTitle, issueNotes);
-    toast.success('Maintenance ticket created. Asset set to Maintenance.');
-    setIsReportModalOpen(false);
-    
-    // Reset
-    setSelectedAssetId('');
-    setIssueTitle('');
-    setIssueNotes('');
+    const res = await reportMaintenance(selectedAssetId, issueTitle, issueNotes);
+    if (res && res.success) {
+      toast.success('Maintenance ticket created. Asset set to Maintenance.');
+      setIsReportModalOpen(false);
+      
+      // Reset
+      setSelectedAssetId('');
+      setIssueTitle('');
+      setIssueNotes('');
+    } else {
+      toast.error(res?.message || 'Failed to report maintenance');
+    }
   };
 
-  const moveCard = (ticketId, currentStatus, direction) => {
+  const moveCard = async (ticketId, currentStatus, direction) => {
     const colOrder = ['Pending', 'Approved', 'Technician Assigned', 'In Progress', 'Resolved'];
     const currentIndex = colOrder.indexOf(currentStatus);
     
@@ -77,7 +81,7 @@ const Maintenance = () => {
         techName = prompt('Enter name of technician to assign:') || 'Tech Support Team';
       }
       
-      updateMaintenanceStatus(ticketId, nextStatus, techName);
+      await updateMaintenanceStatus(ticketId, nextStatus, techName);
       toast.success(`Ticket status updated to ${nextStatus}`);
     }
   };

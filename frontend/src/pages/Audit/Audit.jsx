@@ -10,18 +10,18 @@ const Audit = () => {
   // Choose the ongoing audit
   const activeAudit = audits.find(a => a.status === 'Ongoing') || audits[0];
 
-  const handleVerify = (assetId, status) => {
-    updateAuditItemVerification(activeAudit.id, assetId, status);
+  const handleVerify = async (assetId, status) => {
+    await updateAuditItemVerification(activeAudit.id, assetId, status);
     toast.success(`Asset ${assetId} flagged as ${status}`);
   };
 
-  const handleCloseAudit = () => {
+  const handleCloseAudit = async () => {
     if (currentUser?.role !== 'Admin' && currentUser?.role !== 'Asset Manager') {
       toast.error('Permission denied: Only Admins or Asset Managers can close audits');
       return;
     }
     
-    closeAudit(activeAudit.id);
+    await closeAudit(activeAudit.id);
     toast.success('Audit successfully closed. System inventory updated.');
   };
 
