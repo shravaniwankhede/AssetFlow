@@ -123,6 +123,7 @@ model TransferRequest {
   targetDepartment   Department?  @relation("TargetDeptTransfers", fields: [targetDepartmentId], references: [id])
   
   status             String       @default("PENDING") // PENDING, APPROVED, REJECTED
+  reason             String?
   createdAt          DateTime     @default(now())
   updatedAt          DateTime     @updatedAt
 }
@@ -138,6 +139,7 @@ model ResourceBooking {
   departmentId Int?
   department   Department? @relation(fields: [departmentId], references: [id])
   
+  title        String?
   startTime    DateTime
   endTime      DateTime
   status       String      @default("UPCOMING") // UPCOMING, ONGOING, COMPLETED, CANCELLED
