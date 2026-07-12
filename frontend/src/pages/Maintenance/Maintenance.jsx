@@ -78,7 +78,7 @@ const Maintenance = () => {
       }
       
       updateMaintenanceStatus(ticketId, nextStatus, techName);
-      toast.success(Ticket status updated to ${nextStatus});
+      toast.success(`Ticket status updated to ${nextStatus}`);
     }
   };
 
@@ -104,7 +104,7 @@ const Maintenance = () => {
           const ticketsInCol = maintenanceTickets.filter(t => t.status === col.id);
           
           return (
-            <div key={col.id} className={kanban-column ${col.color}}>
+            <div key={col.id} className={`kanban-column ${col.color}`}>
               <div className="column-header">
                 <span className="column-title">{col.label}</span>
                 <span className="column-count-badge">{ticketsInCol.length}</span>
@@ -113,7 +113,7 @@ const Maintenance = () => {
               <div className="column-cards-container">
                 {ticketsInCol.length > 0 ? (
                   ticketsInCol.map((ticket) => (
-                    <div key={ticket.id} className={kanban-card ${col.id === 'Resolved' ? 'resolved-card' : ''}}>
+                    <div key={ticket.id} className={`kanban-card ${col.id === 'Resolved' ? 'resolved-card' : ''}`}>
                       <div className="card-header-row">
                         <span className="ticket-id">{ticket.assetId}</span>
                         {ticket.dateReported && (
