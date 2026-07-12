@@ -1,0 +1,226 @@
+.notifications-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3) 0;
+  width: 100%;
+}
+
+.notif-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  text-align: left;
+  margin-bottom: var(--space-1);
+}
+
+.btn-mark-read {
+  padding: 8px 14px;
+  font-size: 13px;
+}
+
+/* Search and Filters Card */
+.notif-search-filter-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-2) !important;
+  text-align: left;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.notif-tabs {
+  display: flex;
+  gap: 6px;
+  border-bottom: none;
+}
+
+.notif-tab-btn {
+  padding: 6px 14px;
+  font-family: var(--font-family);
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid var(--border);
+  background-color: #ffffff;
+  color: var(--text-secondary);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.notif-tab-btn:hover {
+  background-color: var(--hover);
+  color: var(--text-primary);
+}
+
+.notif-tab-btn.active {
+  background-color: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+}
+
+.notif-search-bar {
+  position: relative;
+  width: 300px;
+  display: flex;
+  align-items: center;
+}
+
+.notif-search-icon {
+  position: absolute;
+  left: 12px;
+  color: var(--text-secondary);
+}
+
+.notif-search-input {
+  width: 100%;
+  padding: 8px 12px 8px 36px;
+  font-family: var(--font-family);
+  font-size: 13px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background-color: var(--bg);
+  color: var(--text-primary);
+  outline: none;
+  transition: all var(--transition-fast);
+}
+
+.notif-search-input:focus {
+  border-color: var(--primary);
+  background-color: #ffffff;
+}
+
+/* List card container */
+.notifications-list-container {
+  padding: 0 !important;
+  overflow: hidden;
+  text-align: left;
+}
+
+.notif-items-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.notif-list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px var(--space-3);
+  border-bottom: 1px solid var(--border);
+  transition: background-color var(--transition-fast);
+  position: relative;
+}
+
+.notif-list-item:last-child {
+  border-bottom: none;
+}
+
+.notif-list-item.unread {
+  background-color: var(--primary-light);
+}
+
+.notif-list-item.unread:hover {
+  background-color: #e0f2fe;
+}
+
+.notif-list-item.read:hover {
+  background-color: var(--hover);
+}
+
+.notif-icon-col {
+  padding: 8px;
+  border-radius: var(--radius-sm);
+  background-color: #ffffff;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.icon-alert { color: var(--danger); }
+.icon-approval { color: var(--primary); }
+.icon-booking { color: var(--success); }
+.icon-default { color: var(--text-secondary); }
+
+.notif-content-col {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.notif-message-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.notif-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.notif-category-tag {
+  font-size: 10px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--text-secondary);
+  letter-spacing: 0.5px;
+}
+
+.notif-time-badge {
+  font-size: 11px;
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.notif-unread-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background-color: var(--primary);
+  align-self: center;
+}
+
+.empty-notif-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: var(--space-4) 0;
+  color: var(--text-secondary);
+}
+
+.empty-bell-icon {
+  color: var(--text-light);
+}
+
+@media (max-width: 768px) {
+  .notif-search-filter-card {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .notif-search-bar {
+    width: 100%;
+  }
+  
+  .notif-tabs {
+    justify-content: space-between;
+  }
+  
+  .notif-tab-btn {
+    flex: 1;
+    text-align: center;
+    padding: 6px 0;
+  }
+}

@@ -1,0 +1,120 @@
+:root {
+  /* Color Palette */
+  --primary: #30183c;      /* Deep Eggplant Purple */
+  --primary-hover: #48255b;
+  --primary-light: #f5eff7; /* Background for active sidebar item */
+  
+  --success: #10B981;      /* Emerald Green */
+  --success-hover: #059669;
+  --success-light: #ECFDF5;
+  
+  --warning: #F59E0B;      /* Amber Yellow */
+  --warning-hover: #D97706;
+  --warning-light: #FEF3C7;
+  
+  --danger: #EF4444;       /* Rose Red */
+  --danger-hover: #DC2626;
+  --danger-light: #FEF2F2;
+
+  --info: #724b68;         /* Warm Mauve */
+  --info-light: #f7eff4;
+  
+  --bg: #F8F7FA;           /* Extremely clean lilac-slate page background */
+  --sidebar: #30183c;      /* Premium Dark Eggplant Sidebar */
+  --sidebar-border: #25122e;
+  --sidebar-hover: rgba(255, 255, 255, 0.06);
+  --sidebar-active-bg: #724b68;
+  --sidebar-active-text: #ffffff;
+  --sidebar-text-secondary: #b9b3be;
+  --card: #FFFFFF;
+  
+  /* Readability Typography Optimization */
+  --text-primary: #1C1322;   /* Deep violet-black for headings */
+  --text-secondary: #5C5263; /* High-contrast charcoal purple-slate for readable body copy */
+  --text-light: #9E96A5;     /* Slate grey-purple for labels/captions */
+  
+  --border: #E5DFEA;         /* Cleaner, softer slate-purple borders */
+  --border-focus: #724b68;
+  --hover: #F2ECF5;          /* Soft purple-grey hover bg */
+  
+  /* Fonts */
+  --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  
+  /* Font Hierarchy */
+  --font-h1-size: 30px;
+  --font-h1-weight: 700;
+  --font-h2-size: 22px;
+  --font-h2-weight: 600;
+  --font-section-size: 18px;
+  --font-section-weight: 600;
+  --font-card-size: 16px;
+  --font-card-weight: 600;
+  --font-body-size: 15px;
+  --font-body-weight: 400;
+  --font-table-size: 13.5px;
+  --font-table-weight: 400;
+  --font-caption-size: 12.5px;
+  --font-caption-weight: 500;
+
+  /* Layout Metrics */
+  --sidebar-width: 250px;
+  --sidebar-collapsed-width: 70px;
+  --navbar-height: 60px;
+  
+  /* Spacing (8-point spacing system) */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 48px;
+  
+  /* Borders and Shadows (Sharper corporate style) */
+  --radius-btn: 6px;       /* Sharper modern button corners */
+  --radius-sm: 4px;
+  --radius-md: 8px;        /* Sleek card corners */
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+  
+  --shadow-sm: 0 1px 2px 0 rgba(48, 24, 60, 0.05);
+  --shadow-md: 0 4px 12px rgba(48, 24, 60, 0.04), 0 2px 4px rgba(48, 24, 60, 0.02);
+  --shadow-lg: 0 10px 15px -3px rgba(48, 24, 60, 0.06), 0 4px 6px -2px rgba(48, 24, 60, 0.03);
+  --shadow-card: 0 1px 3px rgba(48, 24, 60, 0.06), 0 2px 8px rgba(48, 24, 60, 0.03);
+  
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
