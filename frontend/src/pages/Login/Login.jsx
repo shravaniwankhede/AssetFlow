@@ -49,8 +49,8 @@ const Login = () => {
     resolver: yupResolver(signupSchema)
   });
 
-  const onLoginSubmit = (data) => {
-    const res = login(data.email, data.password);
+  const onLoginSubmit = async (data) => {
+    const res = await login(data.email, data.password);
     if (res.success) {
       toast.success(`Welcome back, ${res.user.name}!`);
       navigate('/dashboard');
@@ -59,8 +59,8 @@ const Login = () => {
     }
   };
 
-  const onSignupSubmit = (data) => {
-    const res = signup(data.name, data.email, data.password);
+  const onSignupSubmit = async (data) => {
+    const res = await signup(data.name, data.email, data.password);
     if (res.success) {
       toast.success('Account created successfully! Please sign in.');
       setIsSignUp(false);
