@@ -12,7 +12,7 @@ import Navbar from './components/layout/Navbar';
 import Login from './pages/Login/Login';
 import Dashboard from './pages/Dashboard/Dashboard';
 import OrganizationSetup from './pages/OrganizationSetup/OrganizationSetup';
-import AssetRegistration from './pages/AssetRegistration/AssetRegistration';
+import AssetRegistration from './pages/AssetRegistration';
 import AssetAllocation from './pages/AssetAllocation/AssetAllocation';
 import ResourceBooking from './pages/ResourceBooking/ResourceBooking';
 import Maintenance from './pages/Maintenance/Maintenance';
