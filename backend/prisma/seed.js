@@ -1,18 +1,13 @@
 import { PrismaClient } from '@prisma/client';
-import { PrismaPg } from '@prisma/adapter-pg';
-import pg from 'pg';
+import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3';
 import dotenv from 'dotenv';
 import crypto from 'crypto';
 
 dotenv.config();
 
-if (!process.env.DATABASE_URL) {
-  console.error("DATABASE_URL is not set in environment.");
-  process.exit(1);
-}
-
-const pool = new pg.Pool({ connectionString: process.env.DATABASE_URL });
-const adapter = new PrismaPg(pool);
+const adapter = new PrismaBetterSqlite3({
+  url: 'file:dev.db'
+});
 const prisma = new PrismaClient({ adapter });
 
 function hashPassword(password) {
@@ -304,12 +299,10 @@ async function main() {
 
   console.log("Seeding completed successfully! 🎉");
   await prisma.$disconnect();
-  pool.end();
 }
 
 main().catch(async (e) => {
   console.error("Error seeding database: ", e);
   await prisma.$disconnect();
-  pool.end();
   process.exit(1);
 });
